@@ -1,0 +1,18 @@
+{
+ "channel": "Planted by Strangers",
+ "note": "Every flower is one person's comment. Position follows the running number (flower 1 stands in the centre).",
+ "flowers": [
+  {
+   "n": 1,
+   "name": "Dobby",
+   "by": "the gardener",
+   "day": 1,
+   "seed": "the gardener",
+   "cid": "seed",
+   "reason": "my most loyal companion",
+   "label": null,
+   "bed": "day",
+   "spec": {"type": "daisy", "petal": "#FFFFFF", "petalDark": "#E4E9F2", "petalLight": "#FFFFFF", "center": "#FFC233", "petals": 13, "height": 1.42, "head": 0.42, "lean": 0.03, "twoLeaves": true}
+  }
+ ]
+}
