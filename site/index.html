@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planted by Strangers</title>
+<meta name="description" content="A garden where every flower is a real person. Comment a name on today's video and it blooms here tomorrow.">
+<base href="/">
+<link rel="canonical" href="https://plantedbystrangers.vercel.app/">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Planted by Strangers">
+<meta property="og:description" content="A garden where every flower is a real person. Comment a name on today's video and it blooms here tomorrow.">
+<meta property="og:url" content="https://plantedbystrangers.vercel.app/">
+<meta property="og:image" content="https://plantedbystrangers.vercel.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<canvas id="garden" tabindex="0" role="img" aria-label="The garden. Every flower stands for one person. Use the search field or the list of all flowers to find one."></canvas>
+
+<header class="top">
+  <div class="brand">
+    <h1>Planted by Strangers</h1>
+    <p>Every flower in this garden is a real person.</p>
+  </div>
+  <p class="tag count" id="count" aria-live="polite">Opening the garden</p>
+</header>
+
+<form class="find" id="find" role="search" autocomplete="off">
+  <label class="vh" for="q">Find a name or a YouTube handle</label>
+  <input id="q" type="search" placeholder="Find a name or @handle" enterkeyhint="search">
+  <ul class="hits" id="hits" hidden></ul>
+</form>
+
+<aside class="card" id="card" hidden>
+  <button class="x" id="cardClose" type="button" aria-label="Back to the whole garden">×</button>
+  <h2 id="cName"></h2>
+  <p class="meta" id="cMeta"></p>
+  <p class="why" id="cWhy" hidden></p>
+  <div class="row">
+    <a class="btn" id="cWatch" href="#" hidden>Watch it bloom</a>
+    <button class="btn ghost" id="cCopy" type="button">Copy link to this flower</button>
+  </div>
+  <p class="copied" id="cCopied" hidden></p>
+</aside>
+
+<nav class="foot" aria-label="About this garden">
+  <a class="btn" id="plant" href="https://www.youtube.com/channel/UCToR0dn0nIJKlGuZd463VTw">Plant a flower</a>
+  <button class="link" type="button" data-open="how">How it works</button>
+  <button class="link" type="button" data-open="all">All flowers</button>
+</nav>
+
+<p class="legal">
+  <button type="button" data-open="privacy">Privacy</button>
+  <button type="button" data-open="imprint">Imprint</button>
+</p>
+<noscript><p class="noscript">This garden is drawn with JavaScript. Please switch it on to walk around. <a href="privacy.html">Privacy</a> · <a href="imprint.html">Imprint</a></p></noscript>
+
+<p class="hint" id="hint">Drag to walk around. Scroll or pinch to zoom. Tap a flower.</p>
+
+<dialog id="how" aria-labelledby="howT">
+  <h2 id="howT">How a flower gets here</h2>
+  <ol class="steps">
+    <li><strong>Comment a name</strong> on today's video. Yours, or someone who matters to you. Say why, if you like.</li>
+    <li><strong>Ask for a flower</strong>, or let the garden choose one. Its choice isn't random.</li>
+    <li><strong>It blooms in tomorrow's episode</strong> and stays in this garden.</li>
+  </ol>
+  <p>One flower per person and day. Links, ads and unkind comments don't get planted.</p>
+  <form method="dialog"><button class="btn">Back to the garden</button></form>
+</dialog>
+
+<dialog id="all" aria-labelledby="allT">
+  <h2 id="allT">All flowers</h2>
+  <ol class="list" id="list"></ol>
+  <form method="dialog"><button class="btn">Back to the garden</button></form>
+</dialog>
+
+<dialog id="privacy" aria-labelledby="privT" class="doc">
+  <h2 id="privT">Privacy</h2>
+  <p class="small">Last updated: 15 November 2026</p>
+  <p>Planted by Strangers is a small private project. This page collects as little as possible. Here is all of it.</p>
+  <h3>Who is responsible</h3>
+  <p>Pascal de Jong<br>Eichenstraße 11<br>87493 Lauben<br>Germany</p>
+  <p>Contact: <a href="mailto:plantedbystrangers@gmail.com">plantedbystrangers@gmail.com</a></p>
+  <h3>What the garden shows</h3>
+  <p>Every flower comes from a public comment on the YouTube channel Planted by Strangers. For each flower this page shows the name that was commented, the public YouTube handle of the person who commented, the day it was planted, the kind of flower and, if it was shown in the video, the reason. Nothing else from YouTube is kept here. Comments with links, advertising or unkind content are not planted.</p>
+  <p>The legal basis is our legitimate interest in showing the garden the videos are about (Art. 6(1)(f) GDPR).</p>
+  <h3>Removing or changing a flower</h3>
+  <p>You can have a name, a handle or a whole flower removed or corrected at any time, without giving a reason. Write to <a href="mailto:plantedbystrangers@gmail.com">plantedbystrangers@gmail.com</a> or leave a comment on the channel. The same applies if someone else planted a flower with your name. Parents and guardians can ask on behalf of a child.</p>
+  <h3>When you open this page</h3>
+  <p>The page is hosted by Vercel Inc. (USA). To deliver it, Vercel's servers process the technical data your browser sends with every request, such as your IP address, the time, the address you opened and your browser type. This is necessary to show you the page (Art. 6(1)(f) GDPR). Vercel works on our behalf; the data may be processed in the USA.</p>
+  <h3>Cookies and storage</h3>
+  <p>This page sets no cookies and does not use your browser's storage. Fonts and scripts come from this site, not from third parties.</p>
+  <h3>Links to YouTube</h3>
+  <p>Buttons such as “Plant a flower” and “Watch it bloom” open YouTube. Only then does YouTube (Google Ireland Ltd.) receive data from you; its own privacy policy applies.</p>
+  <h3>Your rights</h3>
+  <p>You have the right to access, rectification, erasure and restriction of processing, the right to object to processing (Art. 15 to 18 and 21 GDPR), and the right to complain to a data protection supervisory authority.</p>
+  <form method="dialog"><button class="btn">Back to the garden</button></form>
+</dialog>
+
+<dialog id="imprint" aria-labelledby="impT" class="doc">
+  <h2 id="impT">Imprint</h2>
+  <p class="small">Information according to § 5 DDG (Germany)</p>
+  <p>Pascal de Jong<br>Eichenstraße 11<br>87493 Lauben<br>Germany</p>
+  <p>Contact: <a href="mailto:plantedbystrangers@gmail.com">plantedbystrangers@gmail.com</a></p>
+  <p>Responsible for the content: Pascal de Jong, address as above.</p>
+  <p class="small">Planted by Strangers is a private project and is not affiliated with YouTube or Google.</p>
+  <form method="dialog"><button class="btn">Back to the garden</button></form>
+</dialog>
+
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="view.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
