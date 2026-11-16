@@ -530,7 +530,7 @@ function drawSeedSpot(ctx, pr, k, t) {
 
 // Procedural flowers. A flower is fully determined by its seed string, so the same
 // commenter always gets the same flower (video, website, prints).
-const LABEL = { lilyvalley: 'lily of the valley' };
+const LABEL = { lilyvalley: 'lily of the valley', gladiolus: 'sword lily' };
 function speciesLabel(type) {
   return LABEL[type] || type;
 }
@@ -726,6 +726,87 @@ function drawHead(ctx, sp, r, t) {
 }
 
 // Lavender: a small bush of thin stems, each ending in a slim purple spike.
+// Sword lily (gladiolus), added 16.11.2026 for a wish: sword-shaped leaves, one tall stem,
+// funnel flowers up one side that open from the bottom, closed buds at the tip.
+function drawGladiolus(ctx, sp, x, y, s, g, stemH, bend, sway) {
+  const d = sp.leafSide;
+  const lg = easeOutCubic(seg(g, 0.08, 0.65));
+  if (lg > 0) {
+    [[-d * 0.36, 0.8, '#3F9160'], [d * 0.32, 0.66, '#4FA36E'], [-d * 0.08, 0.54, '#5BB37F']].forEach(([lean, len, col]) => {
+      const L = stemH * len * lg;
+      const tipX = x + lean * s * 0.9 + bend * len * 0.5;
+      const w = s * 0.07;
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      ctx.moveTo(x - w * 0.5, y);
+      ctx.quadraticCurveTo(x + lean * s * 0.25 - w, y - L * 0.55, tipX, y - L);
+      ctx.quadraticCurveTo(x + lean * s * 0.25 + w, y - L * 0.5, x + w * 0.5, y);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+      ctx.lineWidth = Math.max(1, s * 0.01);
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.quadraticCurveTo(x + lean * s * 0.25, y - L * 0.52, tipX, y - L * 0.97);
+      ctx.stroke();
+    });
+  }
+  // the stem: nearly straight, tip leaning a little
+  const sg = easeOutCubic(seg(g, 0.05, 0.8));
+  const mx = x + bend * 0.2;
+  const my = y - stemH * 0.55;
+  const tx = x + bend + d * s * 0.05;
+  const ty = y - stemH * 1.02;
+  const at = (u) => [(1 - u) * (1 - u) * x + 2 * (1 - u) * u * mx + u * u * tx, (1 - u) * (1 - u) * y + 2 * (1 - u) * u * my + u * u * ty];
+  ctx.strokeStyle = sp.stem;
+  ctx.lineCap = 'round';
+  ctx.lineWidth = Math.max(1.6, s * 0.032);
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  const [ex, ey] = at(sg);
+  const [qx, qy] = at(sg * 0.5);
+  ctx.quadraticCurveTo(2 * qx - (x + ex) / 2, 2 * qy - (y + ey) / 2, ex, ey);
+  ctx.stroke();
+  // flowers from the bottom of the spike upwards; the last two stay buds
+  const spikeG = seg(g, 0.45, 1);
+  const count = 8;
+  for (let i = count - 1; i >= 0; i--) {
+    const u = 0.36 + (i / (count - 1)) * 0.64;
+    const kk = clamp(spikeG * (count + 2) - i * 0.9);
+    if (kk <= 0 || u > sg + 0.02) continue;
+    const [bx, by] = at(u);
+    const side = i % 3 === 2 ? -d : d; // mostly to one side, like the real thing
+    const size = s * 0.145 * (1.12 - (i / count) * 0.6) * easeOutBack(kk);
+    const cx = bx + side * size * 0.75;
+    const cy = by - size * 0.15;
+    if (i >= count - 2) {
+      // closed bud: a slim green-tipped drop
+      ctx.fillStyle = mixColor(sp.petal, '#6FBF8A', 0.45);
+      ellipse(ctx, bx + side * size * 0.3, by - size * 0.2, size * 0.34, size * 0.7, side * 0.35);
+      ctx.fill();
+      continue;
+    }
+    const tilt = side * 0.5;
+    // three back petals, two front petals, a darker throat
+    ctx.fillStyle = sp.petalDark;
+    [-0.95, 0, 0.95].forEach((a) => {
+      ellipse(ctx, cx + Math.sin(a + tilt) * size * 0.5, cy - Math.cos(a + tilt) * size * 0.5, size * 0.42, size * 0.66, a + tilt);
+      ctx.fill();
+    });
+    ctx.fillStyle = sp.petal;
+    [-0.55, 0.55].forEach((a) => {
+      ellipse(ctx, cx + Math.sin(a + tilt) * size * 0.34, cy - Math.cos(a + tilt) * size * 0.3 + size * 0.12, size * 0.4, size * 0.6, a + tilt);
+      ctx.fill();
+    });
+    ctx.fillStyle = sp.petalLight;
+    ellipse(ctx, cx, cy + size * 0.2, size * 0.3, size * 0.42, tilt);
+    ctx.fill();
+    ctx.fillStyle = mixColor(sp.petal, '#E9B949', 0.55);
+    ellipse(ctx, cx - side * size * 0.06, cy + size * 0.06, size * 0.13, size * 0.2, tilt);
+    ctx.fill();
+  }
+  return { hx: x + bend, hy: y - stemH * 0.98, r: Math.max(s * 0.14 * seg(g, 0.5, 1), s * 0.08) };
+}
+
 function drawLavender(ctx, sp, x, y, s, g, stemH, bend, sway) {
   const lg = easeOutCubic(seg(g, 0.15, 0.7));
   const spikeG = seg(g, 0.45, 1);
@@ -908,8 +989,9 @@ function drawFlower(ctx, sp, x, y, s, g, t, opts = {}) {
     return { hx, hy, r };
   }
 
-  if (sp.type === 'lavender' || sp.type === 'lilyvalley') {
-    const head = sp.type === 'lavender' ? drawLavender(ctx, sp, x, y, s, g, stemH, bend, sway) : drawLilyValley(ctx, sp, x, y, s, g, stemH, bend, sway);
+  if (sp.type === 'lavender' || sp.type === 'lilyvalley' || sp.type === 'gladiolus') {
+    const draw = sp.type === 'lavender' ? drawLavender : sp.type === 'lilyvalley' ? drawLilyValley : drawGladiolus;
+    const head = draw(ctx, sp, x, y, s, g, stemH, bend, sway);
     ctx.restore();
     return head;
   }
