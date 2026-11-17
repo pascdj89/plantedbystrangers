@@ -671,6 +671,64 @@
     "twoLeaves": true,
     "rot": 4.2786
    }
+  },
+  {
+   "n": 24,
+   "name": "Luna",
+   "by": "@Fluffy_otherpawz",
+   "day": 7,
+   "seed": "Luna#Ugzvqzd4DMrfGwA6vSR4AaABAg",
+   "cid": "Ugzvqzd4DMrfGwA6vSR4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "orchid",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "orchid",
+    "petal": "#FFFFFF",
+    "petalDark": "rgb(212,206,208)",
+    "petalLight": "rgb(255,255,255)",
+    "center": "#FFD166",
+    "stem": "#3F9160",
+    "height": 1.3672,
+    "head": 0.26,
+    "petals": 13,
+    "lean": 0.0393,
+    "phase": 0.1818,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 1.3206
+   }
+  },
+  {
+   "n": 25,
+   "name": "Tofu",
+   "by": "@Fluffy_otherpawz",
+   "day": 7,
+   "seed": "Tofu#Ugzvqzd4DMrfGwA6vSR4AaABAg",
+   "cid": "Ugzvqzd4DMrfGwA6vSR4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "orchid",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "orchid",
+    "petal": "#FFC6D9",
+    "petalDark": "rgb(212,161,179)",
+    "petalLight": "rgb(255,218,230)",
+    "center": "#FFD166",
+    "stem": "#3A8A57",
+    "height": 1.4463,
+    "head": 0.26,
+    "petals": 8,
+    "lean": 0.014,
+    "phase": 1.3422,
+    "leafSide": -1,
+    "twoLeaves": true,
+    "rot": 5.0658
+   }
   }
  ]
 }

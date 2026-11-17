@@ -807,6 +807,93 @@ function drawGladiolus(ctx, sp, x, y, s, g, stemH, bend, sway) {
   return { hx: x + bend, hy: y - stemH * 0.98, r: Math.max(s * 0.14 * seg(g, 0.5, 1), s * 0.08) };
 }
 
+// Orchid (moth orchid), drawn 17.11.2026 for a wish: broad low leaves, one arching stem,
+// flat flowers along the arch (two wide petals, three sepals, a darker lip), a bud at the tip.
+function drawOrchid(ctx, sp, x, y, s, g, stemH, bend, sway) {
+  const d = sp.leafSide;
+  const lg = easeOutCubic(seg(g, 0.05, 0.55));
+  if (lg > 0) {
+    [[-1, 0.24, '#3F9160'], [1, 0.2, '#4FA36E'], [-0.35, 0.15, '#5BB37F']].forEach(([side, len, col]) => {
+      const L = s * len * lg;
+      ctx.fillStyle = col;
+      ellipse(ctx, x + side * L * 0.78, y - s * 0.04 - Math.abs(side) * L * 0.2, L, s * 0.065 * lg, -side * 0.38);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+      ctx.lineWidth = Math.max(1, s * 0.01);
+      ctx.beginPath();
+      ctx.moveTo(x, y - s * 0.02);
+      ctx.lineTo(x + side * L * 1.45, y - s * 0.04 - Math.abs(side) * L * 0.5);
+      ctx.stroke();
+    });
+  }
+  // the stem rises and then arches over to one side
+  const sg = easeOutCubic(seg(g, 0.05, 0.8));
+  const mx = x + bend * 0.3 - d * s * 0.12;
+  const my = y - stemH * 1.3;
+  const tx = x + bend + d * s * 0.98;
+  const ty = y - stemH * 0.7;
+  const at = (u) => [(1 - u) * (1 - u) * x + 2 * (1 - u) * u * mx + u * u * tx, (1 - u) * (1 - u) * y + 2 * (1 - u) * u * my + u * u * ty];
+  ctx.strokeStyle = sp.stem;
+  ctx.lineCap = 'round';
+  ctx.lineWidth = Math.max(1.6, s * 0.032);
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  for (let i = 1; i <= 14; i++) {
+    const [px, py] = at((sg * i) / 14);
+    ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  const lip = mixColor(sp.petal, '#C2185B', 0.72);
+  const sepal = mixColor(sp.petal, '#7A3E6B', 0.14);
+  const bloomG = seg(g, 0.45, 1);
+  const count = 5;
+  for (let i = count - 1; i >= 0; i--) {
+    const u = 0.46 + (i / (count - 1)) * 0.54;
+    const kk = clamp(bloomG * (count + 1.5) - i * 0.9);
+    if (kk <= 0 || u > sg + 0.02) continue;
+    const [bx, by] = at(u);
+    const z = s * 0.215 * (1.1 - (i / count) * 0.45) * easeOutBack(kk);
+    const cx = bx - d * z * 0.12;
+    const cy = by + z * 0.42;
+    ctx.strokeStyle = sp.stem;
+    ctx.lineWidth = Math.max(1, s * 0.012);
+    ctx.beginPath();
+    ctx.moveTo(bx, by);
+    ctx.lineTo(cx, cy - z * 0.2);
+    ctx.stroke();
+    if (i === count - 1) {
+      ctx.fillStyle = mixColor(sp.petal, '#6FBF8A', 0.5);
+      ellipse(ctx, cx + d * z * 0.1, cy - z * 0.1, z * 0.22, z * 0.32, d * 0.4);
+      ctx.fill();
+      continue;
+    }
+    // three sepals behind, two wide petals in front, the lip and a small yellow centre
+    ctx.fillStyle = sepal;
+    [0, 2.25, -2.25].forEach((a) => {
+      ellipse(ctx, cx + Math.sin(a) * z * 0.36, cy - Math.cos(a) * z * 0.36, z * 0.24, z * 0.44, a);
+      ctx.fill();
+    });
+    ctx.fillStyle = sp.petal;
+    [-1, 1].forEach((side) => {
+      ellipse(ctx, cx + side * z * 0.4, cy - z * 0.06, z * 0.46, z * 0.36, side * 0.22);
+      ctx.fill();
+    });
+    ctx.fillStyle = sp.petalLight;
+    [-1, 1].forEach((side) => {
+      ellipse(ctx, cx + side * z * 0.46, cy - z * 0.12, z * 0.22, z * 0.15, side * 0.22);
+      ctx.fill();
+    });
+    ctx.fillStyle = lip;
+    ellipse(ctx, cx, cy + z * 0.2, z * 0.15, z * 0.21, 0);
+    ctx.fill();
+    ctx.fillStyle = '#FFD166';
+    ellipse(ctx, cx, cy + z * 0.02, z * 0.085, z * 0.085, 0);
+    ctx.fill();
+  }
+  const [hx, hy] = at(0.6);
+  return { hx, hy: hy - s * 0.04, r: Math.max(s * 0.16 * seg(g, 0.5, 1), s * 0.08) };
+}
+
 function drawLavender(ctx, sp, x, y, s, g, stemH, bend, sway) {
   const lg = easeOutCubic(seg(g, 0.15, 0.7));
   const spikeG = seg(g, 0.45, 1);
@@ -989,8 +1076,8 @@ function drawFlower(ctx, sp, x, y, s, g, t, opts = {}) {
     return { hx, hy, r };
   }
 
-  if (sp.type === 'lavender' || sp.type === 'lilyvalley' || sp.type === 'gladiolus') {
-    const draw = sp.type === 'lavender' ? drawLavender : sp.type === 'lilyvalley' ? drawLilyValley : drawGladiolus;
+  if (sp.type === 'lavender' || sp.type === 'lilyvalley' || sp.type === 'gladiolus' || sp.type === 'orchid') {
+    const draw = sp.type === 'lavender' ? drawLavender : sp.type === 'lilyvalley' ? drawLilyValley : sp.type === 'orchid' ? drawOrchid : drawGladiolus;
     const head = draw(ctx, sp, x, y, s, g, stemH, bend, sway);
     ctx.restore();
     return head;
