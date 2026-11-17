@@ -613,6 +613,64 @@
     "twoLeaves": true,
     "rot": 1.0416
    }
+  },
+  {
+   "n": 22,
+   "name": "Keira",
+   "by": "@jupithey",
+   "day": 7,
+   "seed": "Keira#UgwYzCKlDty1fqo1D9d4AaABAg",
+   "cid": "UgwYzCKlDty1fqo1D9d4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "poppy",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "poppy",
+    "petal": "#FFFFFF",
+    "petalDark": "rgb(212,206,208)",
+    "petalLight": "rgb(255,255,255)",
+    "center": "#2B2B2B",
+    "stem": "#2F7D4F",
+    "height": 0.9305,
+    "head": 0.3893,
+    "petals": 5,
+    "lean": -0.0495,
+    "phase": 0.3015,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 6.0347
+   }
+  },
+  {
+   "n": 23,
+   "name": "Valentina",
+   "by": "@D4nisSimion-v5x",
+   "day": 7,
+   "seed": "Valentina#Ugx9yQ6NZ0ZT4KNb2uF4AaABAg",
+   "cid": "Ugx9yQ6NZ0ZT4KNb2uF4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "tulip",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "tulip",
+    "petal": "#F25C54",
+    "petalDark": "rgb(202,79,75)",
+    "petalLight": "rgb(247,149,144)",
+    "center": "#FFD166",
+    "stem": "#3A8A57",
+    "height": 1.0664,
+    "head": 0.3638,
+    "petals": 10,
+    "lean": -0.0177,
+    "phase": 3.9702,
+    "leafSide": 1,
+    "twoLeaves": true,
+    "rot": 4.2786
+   }
   }
  ]
 }
