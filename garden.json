@@ -729,6 +729,64 @@
     "twoLeaves": true,
     "rot": 5.0658
    }
+  },
+  {
+   "n": 26,
+   "name": "Buster",
+   "by": "@Ebr10-w8c",
+   "day": 8,
+   "seed": "Buster#UgyhWrbp2L_6u1NgnQN4AaABAg",
+   "cid": "UgyhWrbp2L_6u1NgnQN4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "lavender",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "lavender",
+    "petal": "#A78BFA",
+    "petalDark": "rgb(143,115,204)",
+    "petalLight": "rgb(198,180,252)",
+    "center": "#FFD166",
+    "stem": "#2C7048",
+    "height": 1.1921,
+    "head": 0.2,
+    "petals": 10,
+    "lean": 0.062,
+    "phase": 4.8151,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 5.9889
+   }
+  },
+  {
+   "n": 27,
+   "name": "Marshmallow",
+   "by": "@Summerhayfever",
+   "day": 8,
+   "seed": "Marshmallow#Ugx9t7gRSLSVd8AIgyF4AaABAg~3",
+   "cid": "Ugx9t7gRSLSVd8AIgyF4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "rose",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "rose",
+    "petal": "#FFF1E6",
+    "petalDark": "rgb(212,195,189)",
+    "petalLight": "rgb(255,246,239)",
+    "center": "#FFD166",
+    "stem": "#2F7D4F",
+    "height": 1.1702,
+    "head": 0.4197,
+    "petals": 12,
+    "lean": -0.0616,
+    "phase": 1.5252,
+    "leafSide": -1,
+    "twoLeaves": false,
+    "rot": 0.2157
+   }
   }
  ]
 }
