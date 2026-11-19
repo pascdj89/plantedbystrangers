@@ -787,6 +787,93 @@
     "twoLeaves": false,
     "rot": 0.2157
    }
+  },
+  {
+   "n": 28,
+   "name": "Isa",
+   "by": "@D4nisSimion-v5x",
+   "day": 9,
+   "seed": "Isa#UgzLfjXCrFSwGWLQayN4AaABAg",
+   "cid": "UgzLfjXCrFSwGWLQayN4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "daffodil",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "daffodil",
+    "petal": "#FFE066",
+    "petalDark": "rgb(212,182,89)",
+    "petalLight": "rgb(255,235,156)",
+    "center": "#FF9F1C",
+    "stem": "#3F9160",
+    "height": 1.0902,
+    "head": 0.3545,
+    "petals": 6,
+    "lean": -0.0133,
+    "phase": 4.2735,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 5.0175
+   }
+  },
+  {
+   "n": 29,
+   "name": null,
+   "by": "@JillianeRemoreras",
+   "day": 9,
+   "seed": "stranger#Ugy_OPW2ARfnCm3HGPV4AaABAg",
+   "cid": "Ugy_OPW2ARfnCm3HGPV4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "lily",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "lily",
+    "petal": "#FF9F45",
+    "petalDark": "rgb(212,131,63)",
+    "petalLight": "rgb(255,193,134)",
+    "center": "#FFD166",
+    "stem": "#2F7D4F",
+    "height": 1.599,
+    "head": 0.437,
+    "petals": 6,
+    "lean": 0.0548,
+    "phase": 2.0038,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 4.3259
+   }
+  },
+  {
+   "n": 30,
+   "name": "Alexis",
+   "by": "@NoodleDrawsss",
+   "day": 9,
+   "seed": "Alexis#Ugxsvu0JzNBgIEco8JN4AaABAg",
+   "cid": "Ugxsvu0JzNBgIEco8JN4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "poppy",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "poppy",
+    "petal": "#EF476F",
+    "petalDark": "rgb(199,62,96)",
+    "petalLight": "rgb(245,135,161)",
+    "center": "#2B2B2B",
+    "stem": "#3F9160",
+    "height": 1.0208,
+    "head": 0.3442,
+    "petals": 5,
+    "lean": 0.0145,
+    "phase": 3.9038,
+    "leafSide": 1,
+    "twoLeaves": true,
+    "rot": 5.6714
+   }
   }
  ]
 }

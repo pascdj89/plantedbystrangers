@@ -67,7 +67,12 @@ const PBSView = (() => {
     const tags = [];
     for (const h of heads) {
       const f = byN.get(h.n);
-      if (!f.name || h.alpha < 0.6) continue;
+      if (h.alpha < 0.6) continue;
+      if (!f.name) {
+        // a flower asked for without a name: when chosen, its tag reads species + planter
+        if (h.n === sel && f.by) tags.push({ h, text: E.speciesLabel(f.spec.type), sub: 'by ' + f.by, size: clamp(h.s * 0.2, 52, 72), pri: 3 });
+        continue;
+      }
       if (h.n === sel) {
         const sub = [E.speciesLabel(f.spec.type), f.by ? 'by ' + f.by : null].filter(Boolean).join(' · ');
         tags.push({ h, text: f.name, sub, size: clamp(h.s * 0.2, 52, 72), pri: 3 });
