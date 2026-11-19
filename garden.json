@@ -874,6 +874,35 @@
     "twoLeaves": true,
     "rot": 5.6714
    }
+  },
+  {
+   "n": 31,
+   "name": "Ash",
+   "by": "@Amana.the.horrorlover",
+   "day": 9,
+   "seed": "Ash#Ugxn2QzC0uhrhLpLBMZ4AaABAg",
+   "cid": "Ugxn2QzC0uhrhLpLBMZ4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "spiderlily",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "spiderlily",
+    "petal": "#FF8FA3",
+    "petalDark": "rgb(212,118,137)",
+    "petalLight": "rgb(255,182,195)",
+    "center": "#FFD166",
+    "stem": "#3A8A57",
+    "height": 1.3792,
+    "head": 0.4436,
+    "petals": 6,
+    "lean": -0.019,
+    "phase": 5.8971,
+    "leafSide": -1,
+    "twoLeaves": true,
+    "rot": 0.2378
+   }
   }
  ]
 }

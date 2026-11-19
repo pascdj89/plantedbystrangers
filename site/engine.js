@@ -530,7 +530,7 @@ function drawSeedSpot(ctx, pr, k, t) {
 
 // Procedural flowers. A flower is fully determined by its seed string, so the same
 // commenter always gets the same flower (video, website, prints).
-const LABEL = { lilyvalley: 'lily of the valley', gladiolus: 'sword lily' };
+const LABEL = { lilyvalley: 'lily of the valley', gladiolus: 'sword lily', spiderlily: 'spider lily' };
 function speciesLabel(type) {
   return LABEL[type] || type;
 }
@@ -556,6 +556,49 @@ function leaf(ctx, x, y, len, ang, color) {
 function drawHead(ctx, sp, r, t) {
   const n = sp.petals;
   switch (sp.type) {
+    case 'spiderlily': {
+      // a ring of narrow, curled-back petals and long stamens that sweep outwards and up
+      const N = 14;
+      const light = mixColor(sp.petal, '#FFFFFF', 0.35);
+      ctx.lineCap = 'round';
+      // stamens first (behind the petals): long arcs ending in a small anther
+      for (let i = 0; i < N; i++) {
+        const a = sp.rot * 0.2 - Math.PI / 2 + ((i + 0.5) / N - 0.5) * Math.PI * 1.75;
+        const L = r * (1.22 + 0.16 * Math.sin(i * 2.3 + sp.rot));
+        const ex = Math.cos(a) * L;
+        const ey = Math.sin(a) * L - r * 0.34;
+        const cx = Math.cos(a) * L * 0.72;
+        const cy = Math.sin(a) * L * 0.72 + r * 0.22;
+        ctx.strokeStyle = light;
+        ctx.lineWidth = Math.max(1, r * 0.028);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(cx, cy, ex, ey);
+        ctx.stroke();
+        ctx.fillStyle = sp.petalDark;
+        ellipse(ctx, ex, ey, r * 0.035, r * 0.035, 0);
+        ctx.fill();
+      }
+      // petals: slim ribbons that leave the middle and hook back at the tip
+      for (let i = 0; i < N; i++) {
+        const a = sp.rot + (i / N) * Math.PI * 2;
+        const len = r * (0.74 + 0.1 * Math.sin(i * 1.7));
+        const hook = (i % 2 ? 1 : -1) * r * 0.26;
+        ctx.save();
+        ctx.rotate(a);
+        ctx.fillStyle = i % 2 ? sp.petal : mixColor(sp.petal, sp.petalDark, 0.35);
+        ctx.beginPath();
+        ctx.moveTo(0, -r * 0.045);
+        ctx.bezierCurveTo(len * 0.45, -r * 0.1, len * 0.9, -r * 0.06, len, hook);
+        ctx.bezierCurveTo(len * 0.82, r * 0.08, len * 0.4, r * 0.1, 0, r * 0.045);
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.fillStyle = mixColor(sp.petal, sp.petalDark, 0.5);
+      ellipse(ctx, 0, 0, r * 0.11, r * 0.11, 0);
+      ctx.fill();
+      break;
+    }
     case 'lily': {
       // six pointed petals seen from the front (three behind, three in front), a rib and
       // freckles on each front petal, a green throat and six stamens with dark anthers
@@ -1231,7 +1274,7 @@ function drawFlower(ctx, sp, x, y, s, g, t, opts = {}) {
   }
 
   // leaves
-  const lg = sp.type === 'tulip' || sp.type === 'daffodil' || sp.type === 'lily' ? 0 : easeOutCubic(seg(g, 0.2, 0.75));
+  const lg = sp.type === 'tulip' || sp.type === 'daffodil' || sp.type === 'lily' || sp.type === 'spiderlily' ? 0 : easeOutCubic(seg(g, 0.2, 0.75));
   if (lg > 0) {
     const leafLen = s * 0.3 * lg;
     const px = (u) => (1 - u) * (1 - u) * x + 2 * (1 - u) * u * cxp + u * u * hx;
