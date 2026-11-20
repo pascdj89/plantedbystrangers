@@ -990,6 +990,35 @@
     "twoLeaves": true,
     "rot": 5.3418
    }
+  },
+  {
+   "n": 35,
+   "name": "Diana",
+   "by": "@Fluffy_otherpawz",
+   "day": 10,
+   "seed": "Diana#UgwAHWsN1PxpnaXoySh4AaABAg",
+   "cid": "UgwAHWsN1PxpnaXoySh4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "iris",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "iris",
+    "petal": "#4F7CFF",
+    "petalDark": "rgb(75,104,208)",
+    "petalLight": "rgb(141,170,255)",
+    "center": "#FFD166",
+    "stem": "#3A8A57",
+    "height": 1.2347,
+    "head": 0.4046,
+    "petals": 6,
+    "lean": -0.0446,
+    "phase": 3.8527,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 2.9145
+   }
   }
  ]
 }

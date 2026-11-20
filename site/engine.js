@@ -556,6 +556,49 @@ function leaf(ctx, x, y, len, ang, color) {
 function drawHead(ctx, sp, r, t) {
   const n = sp.petals;
   switch (sp.type) {
+    case 'iris': {
+      // three upright petals ("standards") behind, three hanging petals ("falls") in front,
+      // each fall with a yellow beard near the heart of the flower
+      const up = mixColor(sp.petal, '#FFFFFF', 0.22);
+      const fall = mixColor(sp.petal, sp.petalDark, 0.3);
+      const petalShape = (len, w) => {
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(len * 0.2, -w * 0.5, len * 0.62, -w, len, 0);
+        ctx.bezierCurveTo(len * 0.62, w, len * 0.2, w * 0.5, 0, 0);
+        ctx.fill();
+      };
+      [-0.62, 0.62, 0].forEach((lean, i) => {
+        ctx.save();
+        ctx.rotate(-Math.PI / 2 + lean);
+        ctx.fillStyle = i === 2 ? up : mixColor(up, sp.petal, 0.45);
+        petalShape(r * (i === 2 ? 1.02 : 0.92), r * 0.34);
+        ctx.restore();
+      });
+      [Math.PI / 2 + 1.08, Math.PI / 2 - 1.08, Math.PI / 2].forEach((a, i) => {
+        ctx.save();
+        ctx.rotate(a);
+        ctx.fillStyle = i === 2 ? sp.petal : fall;
+        petalShape(r * (i === 2 ? 1.08 : 1.0), r * 0.46);
+        ctx.strokeStyle = mixColor(sp.petal, '#FFFFFF', 0.45);
+        ctx.lineWidth = Math.max(1, r * 0.022);
+        ctx.lineCap = 'round';
+        [-0.16, 0, 0.16].forEach((k) => {
+          ctx.beginPath();
+          ctx.moveTo(r * 0.5, k * r * 0.5);
+          ctx.lineTo(r * 0.82, k * r * 1.1);
+          ctx.stroke();
+        });
+        ctx.fillStyle = sp.petal === '#FFD166' ? '#F77F00' : '#FFD23F';
+        ellipse(ctx, r * 0.3, 0, r * 0.2, r * 0.075, 0);
+        ctx.fill();
+        ctx.restore();
+      });
+      ctx.fillStyle = mixColor(sp.petal, sp.petalDark, 0.55);
+      ellipse(ctx, 0, 0, r * 0.1, r * 0.1, 0);
+      ctx.fill();
+      break;
+    }
     case 'spiderlily': {
       // a ring of narrow, curled-back petals and long stamens that sweep outwards and up
       const N = 14;
@@ -1264,6 +1307,18 @@ function drawFlower(ctx, sp, x, y, s, g, t, opts = {}) {
       ctx.fill();
     });
   }
+  if (sp.type === 'iris' && lgS > 0) {
+    // stiff sword leaves standing up from the ground
+    [[-1, 0.74, '#3F9160'], [1, 0.62, '#4FA36E'], [0.3, 0.5, '#5BB37F']].forEach(([side, len, col]) => {
+      const L = stemH * len * lgS;
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      ctx.moveTo(x - s * 0.035, y);
+      ctx.bezierCurveTo(x + side * s * 0.04, y - L * 0.45, x + side * s * 0.1, y - L * 0.8, x + side * s * 0.13 + bend * 0.3, y - L);
+      ctx.bezierCurveTo(x + side * s * 0.12 + s * 0.03, y - L * 0.7, x + side * s * 0.05 + s * 0.045, y - L * 0.3, x + s * 0.04, y);
+      ctx.fill();
+    });
+  }
   if (sp.type === 'lily' && lgS > 0) {
     // slim leaves up the stem, left and right in turn
     const green = mixColor(sp.stem, '#8fd48f', 0.2);
@@ -1274,7 +1329,7 @@ function drawFlower(ctx, sp, x, y, s, g, t, opts = {}) {
   }
 
   // leaves
-  const lg = sp.type === 'tulip' || sp.type === 'daffodil' || sp.type === 'lily' || sp.type === 'spiderlily' ? 0 : easeOutCubic(seg(g, 0.2, 0.75));
+  const lg = sp.type === 'tulip' || sp.type === 'daffodil' || sp.type === 'lily' || sp.type === 'spiderlily' || sp.type === 'iris' ? 0 : easeOutCubic(seg(g, 0.2, 0.75));
   if (lg > 0) {
     const leafLen = s * 0.3 * lg;
     const px = (u) => (1 - u) * (1 - u) * x + 2 * (1 - u) * u * cxp + u * u * hx;
