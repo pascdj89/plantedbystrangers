@@ -903,6 +903,93 @@
     "twoLeaves": true,
     "rot": 0.2378
    }
+  },
+  {
+   "n": 32,
+   "name": null,
+   "by": "@Ebr10-w8c",
+   "day": 10,
+   "seed": "stranger#UgwQJoJiqXXang76tnF4AaABAg",
+   "cid": "UgwQJoJiqXXang76tnF4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "lavender",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "lavender",
+    "petal": "#A78BFA",
+    "petalDark": "rgb(143,115,204)",
+    "petalLight": "rgb(198,180,252)",
+    "center": "#FFD166",
+    "stem": "#2F7D4F",
+    "height": 1.1025,
+    "head": 0.2,
+    "petals": 12,
+    "lean": -0.0069,
+    "phase": 1.7321,
+    "leafSide": 1,
+    "twoLeaves": true,
+    "rot": 3.5698
+   }
+  },
+  {
+   "n": 33,
+   "name": "Cotton",
+   "by": "@melaniecamacho4598",
+   "day": 10,
+   "seed": "Cotton#Ugw1bBI60yFkVuga9-l4AaABAg",
+   "cid": "Ugw1bBI60yFkVuga9-l4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "daisy",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "daisy",
+    "petal": "#FFF3B0",
+    "petalDark": "rgb(212,196,147)",
+    "petalLight": "rgb(255,247,204)",
+    "center": "#FFC233",
+    "stem": "#3F9160",
+    "height": 1.1474,
+    "head": 0.3531,
+    "petals": 13,
+    "lean": 0.0239,
+    "phase": 4.3541,
+    "leafSide": -1,
+    "twoLeaves": false,
+    "rot": 2.2615
+   }
+  },
+  {
+   "n": 34,
+   "name": "Aarya",
+   "by": "@Tadc4lifehehe",
+   "day": 10,
+   "seed": "Aarya#UgxfJOWXKKWL0Ls_aSJ4AaABAg",
+   "cid": "UgxfJOWXKKWL0Ls_aSJ4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "poppy",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "poppy",
+    "petal": "#EF476F",
+    "petalDark": "rgb(199,62,96)",
+    "petalLight": "rgb(245,135,161)",
+    "center": "#2B2B2B",
+    "stem": "#2F7D4F",
+    "height": 1.2074,
+    "head": 0.3277,
+    "petals": 5,
+    "lean": -0.0265,
+    "phase": 2.7957,
+    "leafSide": 1,
+    "twoLeaves": true,
+    "rot": 5.3418
+   }
   }
  ]
 }
