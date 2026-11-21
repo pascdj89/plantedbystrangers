@@ -1019,6 +1019,35 @@
     "twoLeaves": false,
     "rot": 2.9145
    }
+  },
+  {
+   "n": 36,
+   "name": "plantbyatrangers",
+   "by": "@D4nisSimion-v5x",
+   "day": 11,
+   "seed": "plantbyatrangers#Ugw-3l6wdM0sBmBt5E94AaABAg",
+   "cid": "Ugw-3l6wdM0sBmBt5E94AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "poppy",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "poppy",
+    "petal": "#FF7A45",
+    "petalDark": "rgb(212,102,63)",
+    "petalLight": "rgb(255,169,134)",
+    "center": "#2B2B2B",
+    "stem": "#2F7D4F",
+    "height": 1.2232,
+    "head": 0.3191,
+    "petals": 5,
+    "lean": -0.0561,
+    "phase": 0.7001,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 5.6193
+   }
   }
  ]
 }
