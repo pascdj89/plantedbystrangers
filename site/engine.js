@@ -530,7 +530,7 @@ function drawSeedSpot(ctx, pr, k, t) {
 
 // Procedural flowers. A flower is fully determined by its seed string, so the same
 // commenter always gets the same flower (video, website, prints).
-const LABEL = { lilyvalley: 'lily of the valley', gladiolus: 'sword lily', spiderlily: 'spider lily' };
+const LABEL = { lilyvalley: 'lily of the valley', gladiolus: 'sword lily', spiderlily: 'spider lily', glitter: 'glitter flower' };
 function speciesLabel(type) {
   return LABEL[type] || type;
 }
@@ -556,6 +556,87 @@ function leaf(ctx, x, y, len, ang, color) {
 function drawHead(ctx, sp, r, t) {
   const n = sp.petals;
   switch (sp.type) {
+    case 'glitter': {
+      // Special flower, drawn 21.11.2026: a white six-petal bloom with a jewel heart and a
+      // cloud of colourful glitter around it. The glitter twinkles with time; where each
+      // sparkle sits follows from the flower's own numbers, so it is the same on every frame.
+      const cols = ['#FF5FA8', '#35C4F0', '#FFC928', '#9B6BF2', '#3FD39A', '#FF8A3D'];
+      const fr = (v) => v - Math.floor(v);
+      const star = (x, y, q, rot) => {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rot);
+        ctx.beginPath();
+        ctx.moveTo(0, -q);
+        ctx.quadraticCurveTo(q * 0.16, -q * 0.16, q, 0);
+        ctx.quadraticCurveTo(q * 0.16, q * 0.16, 0, q);
+        ctx.quadraticCurveTo(-q * 0.16, q * 0.16, -q, 0);
+        ctx.quadraticCurveTo(-q * 0.16, -q * 0.16, 0, -q);
+        ctx.fill();
+        ctx.restore();
+      };
+      const sparkle = (i, count, near, far, big) => {
+        const a = sp.rot + i * 2.399963;
+        const d = r * (near + (far - near) * fr(i * 0.618034 + sp.phase));
+        const tw = 0.5 + 0.5 * Math.sin(t * 3.4 + i * 1.9 + sp.phase);
+        const q = r * big * (0.45 + 0.55 * tw);
+        ctx.globalAlpha = 0.5 + 0.5 * tw;
+        ctx.fillStyle = cols[i % cols.length];
+        if (i % 3 === 2) {
+          ellipse(ctx, Math.cos(a) * d, Math.sin(a) * d, q * 0.42, q * 0.42, 0);
+          ctx.fill();
+        } else {
+          star(Math.cos(a) * d, Math.sin(a) * d, q, a * 0.5);
+        }
+      };
+      const ga = ctx.globalAlpha;
+      for (let i = 0; i < 18; i++) sparkle(i, 18, 1.22, 2.05, 0.2);
+      ctx.globalAlpha = ga;
+      // petals: broad and rounded, a cool shadow layer behind so white reads on a pale sky
+      for (let layer = 0; layer < 2; layer++) {
+        const off = layer === 0 ? Math.PI / 6 : 0;
+        const len = layer === 0 ? 0.98 : 1.06;
+        for (let i = 0; i < 6; i++) {
+          ctx.save();
+          ctx.rotate(sp.rot + off + (i / 6) * Math.PI * 2);
+          ctx.fillStyle = layer === 0 ? '#DCD6F7' : sp.petal;
+          ctx.beginPath();
+          ctx.moveTo(r * 0.08, 0);
+          ctx.bezierCurveTo(r * 0.3, -r * 0.5, r * 0.95 * len, -r * 0.42, r * len, 0);
+          ctx.bezierCurveTo(r * 0.95 * len, r * 0.42, r * 0.3, r * 0.5, r * 0.08, 0);
+          ctx.fill();
+          if (layer === 1) {
+            ctx.strokeStyle = 'rgba(160,140,220,0.55)';
+            ctx.lineWidth = Math.max(1, r * 0.022);
+            ctx.stroke();
+            // a blush of colour at the base of each petal
+            ctx.fillStyle = cols[i];
+            ctx.globalAlpha = ga * 0.3;
+            ellipse(ctx, r * 0.34, 0, r * 0.2, r * 0.1, 0);
+            ctx.fill();
+            ctx.globalAlpha = ga;
+          }
+          ctx.restore();
+        }
+      }
+      // glitter on the petals
+      for (let i = 0; i < 9; i++) sparkle(i + 40, 9, 0.42, 0.9, 0.085);
+      ctx.globalAlpha = ga;
+      // jewel heart
+      ellipse(ctx, 0, 0, r * 0.22, r * 0.22, 0);
+      ctx.fillStyle = sp.center;
+      ctx.fill();
+      for (let i = 0; i < 6; i++) {
+        const a = sp.rot + (i / 6) * Math.PI * 2 + Math.PI / 6;
+        ctx.fillStyle = cols[(i + 3) % 6];
+        ellipse(ctx, Math.cos(a) * r * 0.13, Math.sin(a) * r * 0.13, r * 0.045, r * 0.045, 0);
+        ctx.fill();
+      }
+      ellipse(ctx, -r * 0.05, -r * 0.06, r * 0.07, r * 0.07, 0);
+      ctx.fillStyle = 'rgba(255,255,255,0.75)';
+      ctx.fill();
+      break;
+    }
     case 'iris': {
       // three upright petals ("standards") behind, three hanging petals ("falls") in front,
       // each fall with a yellow beard near the heart of the flower
