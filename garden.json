@@ -1022,7 +1022,7 @@
   },
   {
    "n": 36,
-   "name": "plantbyatrangers",
+   "name": "Planted by Strangers",
    "by": "@D4nisSimion-v5x",
    "day": 11,
    "seed": "plantbyatrangers#Ugw-3l6wdM0sBmBt5E94AaABAg",
@@ -1047,6 +1047,35 @@
     "leafSide": 1,
     "twoLeaves": false,
     "rot": 5.6193
+   }
+  },
+  {
+   "n": 37,
+   "name": "D4nis",
+   "by": "the gardener",
+   "day": 11,
+   "seed": "D4nis#gift-day11",
+   "cid": "gift-day11",
+   "reason": null,
+   "label": null,
+   "species": "sunflower",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "sunflower",
+    "petal": "#FFD24D",
+    "petalDark": "rgb(212,171,70)",
+    "petalLight": "rgb(255,226,139)",
+    "center": "#5A3A22",
+    "stem": "#3F9160",
+    "height": 1.8397,
+    "head": 0.4536,
+    "petals": 20,
+    "lean": 0.0595,
+    "phase": 0.2852,
+    "leafSide": -1,
+    "twoLeaves": false,
+    "rot": 1.84
    }
   }
  ]
