@@ -1077,6 +1077,35 @@
     "twoLeaves": false,
     "rot": 1.84
    }
+  },
+  {
+   "n": 38,
+   "name": "Luisa",
+   "by": "the gardener's daughter",
+   "day": 12,
+   "seed": "Luisa#gift-day12",
+   "cid": "gift-day12",
+   "reason": null,
+   "label": null,
+   "species": "glitter",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "glitter",
+    "petal": "#FFFDF8",
+    "petalDark": "rgb(212,204,203)",
+    "petalLight": "rgb(255,254,250)",
+    "center": "#FFE08A",
+    "stem": "#2C7048",
+    "height": 1.1237,
+    "head": 0.3709,
+    "petals": 6,
+    "lean": -0.0357,
+    "phase": 5.4487,
+    "leafSide": -1,
+    "twoLeaves": false,
+    "rot": 3.8067
+   }
   }
  ]
 }
