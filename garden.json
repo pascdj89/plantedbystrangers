@@ -1106,6 +1106,93 @@
     "twoLeaves": false,
     "rot": 3.8067
    }
+  },
+  {
+   "n": 39,
+   "name": "Orlian",
+   "by": "@Blue_stickmann",
+   "day": 13,
+   "seed": "Orlian#UgxxFMHcLlF4OPP1dyR4AaABAg",
+   "cid": "UgxxFMHcLlF4OPP1dyR4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "lavender",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "lavender",
+    "petal": "#9B7EDE",
+    "petalDark": "rgb(134,105,183)",
+    "petalLight": "rgb(190,171,234)",
+    "center": "#FFD166",
+    "stem": "#3A8A57",
+    "height": 1.1611,
+    "head": 0.2,
+    "petals": 13,
+    "lean": 0.0339,
+    "phase": 3.5361,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 2.3639
+   }
+  },
+  {
+   "n": 40,
+   "name": "the helpdesk people",
+   "by": "@jupithey",
+   "day": 13,
+   "seed": "the helpdesk people#Ugy_rfBXInY28VBzHr94AaABAg",
+   "cid": "Ugy_rfBXInY28VBzHr94AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "poppy",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "poppy",
+    "petal": "#F78FB3",
+    "petalDark": "rgb(206,118,149)",
+    "petalLight": "rgb(250,182,206)",
+    "center": "#2B2B2B",
+    "stem": "#2F7D4F",
+    "height": 1.3336,
+    "head": 0.3354,
+    "petals": 5,
+    "lean": -0.0612,
+    "phase": 4.6298,
+    "leafSide": -1,
+    "twoLeaves": false,
+    "rot": 0.9844
+   }
+  },
+  {
+   "n": 41,
+   "name": "Mimi",
+   "by": "@Itz-m3g4n5",
+   "day": 13,
+   "seed": "Mimi#UgwTzEBVKLvwjZdNTSB4AaABAg~22",
+   "cid": "UgwTzEBVKLvwjZdNTSB4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "orchid",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "orchid",
+    "petal": "#FFFFFF",
+    "petalDark": "rgb(212,206,208)",
+    "petalLight": "rgb(255,255,255)",
+    "center": "#FFD166",
+    "stem": "#2C7048",
+    "height": 1.4281,
+    "head": 0.26,
+    "petals": 13,
+    "lean": 0.06,
+    "phase": 3.9671,
+    "leafSide": -1,
+    "twoLeaves": true,
+    "rot": 5.0992
+   }
   }
  ]
 }
