@@ -1193,6 +1193,35 @@
     "twoLeaves": true,
     "rot": 5.0992
    }
+  },
+  {
+   "n": 42,
+   "name": "Essa Moss",
+   "by": "@creeksidedinery8732",
+   "day": 14,
+   "seed": "Essa Moss#UgyAnHwreSo4T1GOEoN4AaABAg",
+   "cid": "UgyAnHwreSo4T1GOEoN4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "rose",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "rose",
+    "petal": "#FFD166",
+    "petalDark": "rgb(212,170,89)",
+    "petalLight": "rgb(255,225,156)",
+    "center": "#FFD166",
+    "stem": "#3A8A57",
+    "height": 1.2988,
+    "head": 0.364,
+    "petals": 12,
+    "lean": 0.058,
+    "phase": 0.0588,
+    "leafSide": 1,
+    "twoLeaves": true,
+    "rot": 6.1869
+   }
   }
  ]
 }
