@@ -771,6 +771,195 @@ function drawHead(ctx, sp, r, t) {
       }
       break;
     }
+    case 'poinsettia': {
+      // a star of pointed bracts over a ring of dark green leaves, tiny gold flowers in the middle
+      const bract = (len, wid, fill, rib) => {
+        ctx.fillStyle = fill;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(len * 0.2, -wid, len * 0.62, -wid * 0.95, len, 0);
+        ctx.bezierCurveTo(len * 0.62, wid * 0.95, len * 0.2, wid, 0, 0);
+        ctx.fill();
+        ctx.strokeStyle = rib;
+        ctx.lineWidth = Math.max(1, r * 0.022);
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(len * 0.12, 0);
+        ctx.lineTo(len * 0.88, 0);
+        ctx.stroke();
+        [0.35, 0.55, 0.72].forEach((u) => {
+          [-1, 1].forEach((sd) => {
+            ctx.beginPath();
+            ctx.moveTo(len * u, 0);
+            ctx.lineTo(len * (u + 0.14), sd * wid * 0.5 * (1.1 - u));
+            ctx.stroke();
+          });
+        });
+      };
+      const green = '#2E6E46';
+      for (let i = 0; i < 6; i++) {
+        ctx.save();
+        ctx.rotate(sp.rot + Math.PI / 6 + (i / 6) * Math.PI * 2);
+        bract(r * 1.22, r * 0.34, i % 2 ? green : '#3B8455', 'rgba(20,60,40,0.45)');
+        ctx.restore();
+      }
+      const ribCol = rgba(mixColor(sp.petal, '#5A0F1A', 0.5), 0.55);
+      for (let i = 0; i < 6; i++) {
+        ctx.save();
+        ctx.rotate(sp.rot + (i / 6) * Math.PI * 2);
+        bract(r * 1.08, r * 0.33, i % 2 ? sp.petal : sp.petalDark, ribCol);
+        ctx.restore();
+      }
+      for (let i = 0; i < 5; i++) {
+        ctx.save();
+        ctx.rotate(sp.rot + 0.5 + (i / 5) * Math.PI * 2);
+        bract(r * 0.68, r * 0.24, i % 2 ? sp.petalLight : sp.petal, ribCol);
+        ctx.restore();
+      }
+      for (let i = 0; i < 7; i++) {
+        const a = sp.rot + i * 2.39996;
+        const rad = i === 0 ? 0 : r * 0.13;
+        ctx.fillStyle = i % 2 ? '#9BC53D' : sp.center;
+        ellipse(ctx, Math.cos(a) * rad, Math.sin(a) * rad, r * 0.065, r * 0.065, 0);
+        ctx.fill();
+        ctx.fillStyle = '#C1121F';
+        ellipse(ctx, Math.cos(a) * rad, Math.sin(a) * rad, r * 0.022, r * 0.022, 0);
+        ctx.fill();
+      }
+      break;
+    }
+    case 'hibiscus': {
+      // five broad, slightly ruffled petals, a dark eye in the throat and the long column
+      // with its yellow tip that makes a hibiscus a hibiscus
+      for (let i = 0; i < 5; i++) {
+        const a = sp.rot + (i / 5) * Math.PI * 2;
+        ctx.save();
+        ctx.rotate(a);
+        ctx.fillStyle = i % 2 ? sp.petal : mixColor(sp.petal, sp.petalDark, 0.35);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(r * 0.2, -r * 0.78, r * 0.95, -r * 0.72, r * 1.1, -r * 0.18);
+        ctx.bezierCurveTo(r * 1.17, -r * 0.05, r * 1.17, r * 0.08, r * 1.08, r * 0.2);
+        ctx.bezierCurveTo(r * 0.95, r * 0.72, r * 0.2, r * 0.78, 0, 0);
+        ctx.fill();
+        // veins
+        ctx.strokeStyle = rgba(mixColor(sp.petal, '#5A0F2A', 0.45), 0.5);
+        ctx.lineWidth = Math.max(1, r * 0.025);
+        ctx.lineCap = 'round';
+        [-0.22, 0, 0.22].forEach((v) => {
+          ctx.beginPath();
+          ctx.moveTo(r * 0.2, 0);
+          ctx.quadraticCurveTo(r * 0.55, v * r * 0.6, r * 0.9, v * r);
+          ctx.stroke();
+        });
+        ctx.restore();
+      }
+      // dark eye
+      const eye = ctx.createRadialGradient(0, 0, 0, 0, 0, r * 0.5);
+      eye.addColorStop(0, rgba(mixColor(sp.petal, sp.center, 0.85), 0.95));
+      eye.addColorStop(0.55, rgba(mixColor(sp.petal, sp.center, 0.6), 0.6));
+      eye.addColorStop(1, rgba(sp.center, 0));
+      ctx.fillStyle = eye;
+      ellipse(ctx, 0, 0, r * 0.5, r * 0.5, 0);
+      ctx.fill();
+      // staminal column, leaning up and to one side
+      const ca = -Math.PI / 2 + 0.5 * sp.leafSide;
+      const cx1 = Math.cos(ca) * r * 0.72;
+      const cy1 = Math.sin(ca) * r * 0.72;
+      ctx.strokeStyle = '#FFE9C9';
+      ctx.lineWidth = Math.max(1.5, r * 0.085);
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.quadraticCurveTo(cx1 * 0.4 + r * 0.06, cy1 * 0.6, cx1, cy1);
+      ctx.stroke();
+      ctx.fillStyle = '#FFC928';
+      for (let i = 0; i < 7; i++) {
+        const u = 0.55 + (i / 6) * 0.45;
+        const side = i % 2 ? 1 : -1;
+        ellipse(ctx, cx1 * u + side * r * 0.06 * Math.cos(ca + Math.PI / 2), cy1 * u + side * r * 0.06 * Math.sin(ca + Math.PI / 2), r * 0.045, r * 0.045, 0);
+        ctx.fill();
+      }
+      ctx.fillStyle = '#C1121F';
+      [-1, 0, 1].forEach((k) => {
+        ellipse(ctx, cx1 * 1.07 + k * r * 0.07 * Math.cos(ca + Math.PI / 2), cy1 * 1.07 + k * r * 0.07 * Math.sin(ca + Math.PI / 2), r * 0.04, r * 0.04, 0);
+        ctx.fill();
+      });
+      break;
+    }
+    case 'hydrangea': {
+      // a round mop of many small four-petal florets; each floret takes a slightly
+      // different shade, placed from the flower's own numbers so it never flickers
+      const fr = (v) => v - Math.floor(v);
+      const shades = [sp.petal, sp.petalLight, mixColor(sp.petal, sp.petalDark, 0.4), mixColor(sp.petal, '#ffffff', 0.18)];
+      ctx.fillStyle = mixColor(sp.petal, sp.petalDark, 0.7);
+      ellipse(ctx, 0, 0, r * 0.92, r * 0.82, 0);
+      ctx.fill();
+      const N = 34;
+      for (let i = 0; i < N; i++) {
+        // golden-angle spiral, outer florets first so the middle ones lie on top
+        const k = N - 1 - i;
+        const rad = r * 0.86 * Math.sqrt((k + 0.5) / N);
+        const a = sp.rot + k * 2.39996;
+        const fx = Math.cos(a) * rad;
+        const fy = Math.sin(a) * rad * 0.88;
+        const q = r * (0.2 + fr(k * 0.618 + sp.phase) * 0.05);
+        ctx.save();
+        ctx.translate(fx, fy);
+        ctx.rotate(fr(k * 0.37 + sp.rot) * Math.PI);
+        ctx.fillStyle = shades[Math.floor(fr(k * 0.71 + sp.phase * 0.3) * shades.length)];
+        for (let p = 0; p < 4; p++) {
+          ctx.save();
+          ctx.rotate((p / 4) * Math.PI * 2);
+          ellipse(ctx, q * 0.55, 0, q * 0.58, q * 0.46, 0);
+          ctx.fill();
+          ctx.restore();
+        }
+        ctx.fillStyle = mixColor(sp.petal, '#FFF6D6', 0.7);
+        ellipse(ctx, 0, 0, q * 0.17, q * 0.17, 0);
+        ctx.fill();
+        ctx.restore();
+      }
+      break;
+    }
+    case 'buttercup': {
+      // five round, overlapping, glossy petals in a shallow cup and a green-gold heart
+      for (let i = 0; i < 5; i++) {
+        const a = sp.rot + (i / 5) * Math.PI * 2;
+        ctx.save();
+        ctx.rotate(a);
+        ctx.fillStyle = i % 2 ? sp.petal : mixColor(sp.petal, '#E09F00', 0.22);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(r * 0.1, -r * 0.7, r * 0.9, -r * 0.75, r * 1.02, -r * 0.1);
+        ctx.bezierCurveTo(r * 1.06, 0, r * 1.06, 0, r * 1.02, r * 0.1);
+        ctx.bezierCurveTo(r * 0.9, r * 0.75, r * 0.1, r * 0.7, 0, 0);
+        ctx.fill();
+        // the gloss buttercups are known for
+        ctx.fillStyle = rgba('#FFFFFF', 0.42);
+        ellipse(ctx, r * 0.68, -r * 0.16, r * 0.2, r * 0.09, -0.5);
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.fillStyle = mixColor(sp.petal, '#E08A00', 0.5);
+      ellipse(ctx, 0, 0, r * 0.36, r * 0.36, 0);
+      ctx.fill();
+      for (let i = 0; i < 14; i++) {
+        const a = sp.rot + (i / 14) * Math.PI * 2;
+        ctx.fillStyle = i % 2 ? '#FFB703' : '#FFD95A';
+        ellipse(ctx, Math.cos(a) * r * 0.27, Math.sin(a) * r * 0.27, r * 0.06, r * 0.06, 0);
+        ctx.fill();
+      }
+      ctx.fillStyle = sp.center;
+      ellipse(ctx, 0, 0, r * 0.17, r * 0.17, 0);
+      ctx.fill();
+      ctx.fillStyle = mixColor(sp.center, '#5E7A1C', 0.4);
+      [[-0.05, -0.04], [0.06, 0.02], [-0.01, 0.07]].forEach(([u, v]) => {
+        ellipse(ctx, r * u, r * v, r * 0.035, r * 0.035, 0);
+        ctx.fill();
+      });
+      break;
+    }
     case 'daffodil': {
       // six broad petals and a frilled trumpet in the middle
       const back = mixColor(sp.petal, '#C9951B', 0.24);
