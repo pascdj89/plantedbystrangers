@@ -1222,6 +1222,93 @@
     "twoLeaves": true,
     "rot": 6.1869
    }
+  },
+  {
+   "n": 43,
+   "name": "Mom",
+   "by": "@NoodleDrawsss",
+   "day": 16,
+   "seed": "Mom#UgzFxT1G55fjOxzXPwt4AaABAg",
+   "cid": "UgzFxT1G55fjOxzXPwt4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "tulip",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "tulip",
+    "petal": "#FFFFFF",
+    "petalDark": "rgb(212,206,208)",
+    "petalLight": "rgb(255,255,255)",
+    "center": "#FFD166",
+    "stem": "#3F9160",
+    "height": 1.2745,
+    "head": 0.3338,
+    "petals": 8,
+    "lean": 0.0148,
+    "phase": 2.6604,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 0.939
+   }
+  },
+  {
+   "n": 44,
+   "name": "Dad",
+   "by": "@NoodleDrawsss",
+   "day": 16,
+   "seed": "Dad#UgzFxT1G55fjOxzXPwt4AaABAg~2",
+   "cid": "UgzFxT1G55fjOxzXPwt4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "tulip",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "tulip",
+    "petal": "#F25C54",
+    "petalDark": "rgb(202,79,75)",
+    "petalLight": "rgb(247,149,144)",
+    "center": "#FFD166",
+    "stem": "#2F7D4F",
+    "height": 0.9169,
+    "head": 0.3656,
+    "petals": 13,
+    "lean": -0.0003,
+    "phase": 1.7507,
+    "leafSide": 1,
+    "twoLeaves": true,
+    "rot": 3.0333
+   }
+  },
+  {
+   "n": 45,
+   "name": "two sisters",
+   "by": "@NoodleDrawsss",
+   "day": 16,
+   "seed": "two sisters#UgzFxT1G55fjOxzXPwt4AaABAg",
+   "cid": "UgzFxT1G55fjOxzXPwt4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "tulip",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "tulip",
+    "petal": "#F78FB3",
+    "petalDark": "rgb(206,118,149)",
+    "petalLight": "rgb(250,182,206)",
+    "center": "#FFD166",
+    "stem": "#2C7048",
+    "height": 0.8912,
+    "head": 0.3243,
+    "petals": 11,
+    "lean": 0.0299,
+    "phase": 2.961,
+    "leafSide": 1,
+    "twoLeaves": false,
+    "rot": 3.1575
+   }
   }
  ]
 }
