@@ -1425,6 +1425,35 @@
     "twoLeaves": false,
     "rot": 5.057
    }
+  },
+  {
+   "n": 50,
+   "name": "Ibella",
+   "by": "@Itz-m3g4n5",
+   "day": 18,
+   "seed": "Ibella#Ugxg_nSPjbKpwbIvW9l4AaABAg",
+   "cid": "Ugxg_nSPjbKpwbIvW9l4AaABAg",
+   "reason": null,
+   "label": null,
+   "species": "poppy",
+   "bed": "day",
+   "spec": {
+    "v": 1,
+    "type": "poppy",
+    "petal": "#F78FB3",
+    "petalDark": "rgb(206,118,149)",
+    "petalLight": "rgb(250,182,206)",
+    "center": "#2B2B2B",
+    "stem": "#2C7048",
+    "height": 1.1726,
+    "head": 0.3719,
+    "petals": 5,
+    "lean": 0.0494,
+    "phase": 3.879,
+    "leafSide": 1,
+    "twoLeaves": true,
+    "rot": 5.4804
+   }
   }
  ]
 }
